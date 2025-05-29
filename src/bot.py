@@ -11,12 +11,17 @@ def send_telegram_message(text):
         "chat_id": TELEGRAM_CHAT_ID,
         "text": text
     }
-    requests.post(url, data=payload)
+    response = requests.post(url, data=payload)
+    print(f"Отправка в Telegram: {text}")
+    print(f"Статус ответа Telegram: {response.status_code}, ответ: {response.text}")
 
 
 def main():
     print("Бот запущен. Ожидание сигналов...")
+    send_telegram_message("✅ Бот успешно запущен и готов к работе!")
     last_signal_time = 0
+    print(f"TELEGRAM_TOKEN: {TELEGRAM_TOKEN}")
+    print(f"TELEGRAM_CHAT_ID: {TELEGRAM_CHAT_ID}")
     while True:
         klines = get_latest_klines()
         if klines and is_volume_spike(klines):

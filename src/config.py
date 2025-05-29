@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 
-# Загружаем переменные из .env
-load_dotenv()
+# Загружаем переменные из .env, который находится в корне проекта
+load_dotenv(dotenv_path=Path(__file__).parent.parent / ".env")
 
 # Настройки для бота
 
